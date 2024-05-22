@@ -1,4 +1,4 @@
-package com.openweather.app.ui.registration
+package com.openweather.app.ui.modules.registration
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

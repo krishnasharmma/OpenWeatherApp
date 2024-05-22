@@ -1,4 +1,4 @@
-package com.openweather.app.ui.registration
+package com.openweather.app.ui.modules.registration
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

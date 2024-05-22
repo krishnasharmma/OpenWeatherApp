@@ -16,8 +16,8 @@ import com.openweather.app.utils.StringConstants
 import com.openweather.app.utils.extension.get
 import com.openweather.app.utils.extension.myAppPreferences
 import com.openweather.app.ui.modules.login.LoginViewModel
-import com.openweather.app.ui.registration.RegistrationScreen
-import com.openweather.app.ui.registration.RegistrationViewModel
+import com.openweather.app.ui.modules.registration.RegistrationScreen
+import com.openweather.app.ui.modules.registration.RegistrationViewModel
 
 
 @OptIn(ExperimentalPermissionsApi::class)
