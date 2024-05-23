@@ -11,6 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
+import com.openweather.app.ui.modules.home.HomeScreen
+import com.openweather.app.ui.modules.home.HomeViewModel
 import com.openweather.app.ui.modules.login.LoginScreen
 import com.openweather.app.utils.StringConstants
 import com.openweather.app.utils.extension.get
@@ -33,7 +35,13 @@ fun WeatherAppNavigation(
         composable(route = StringConstants.registrationRoute) {
             RegistrationScreen(navController, hiltViewModel<RegistrationViewModel>())
         }
-
+        composable(route = StringConstants.homeRoute) {
+            if (locationPermissionState.allPermissionsGranted) {
+                HomeScreen(hiltViewModel<HomeViewModel>(), navController)
+            } else {
+                locationPermissionState.launchMultiplePermissionRequest()
+            }
+        }
 
     }
 }

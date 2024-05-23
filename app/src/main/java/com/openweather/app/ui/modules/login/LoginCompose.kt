@@ -2,6 +2,7 @@ package com.openweather.app.ui.modules.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -21,12 +24,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
@@ -45,7 +51,7 @@ import com.openweather.app.utils.extension.set
 
 @Composable
 fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel) {
-    Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+    Column (modifier = Modifier.fillMaxSize().background(color = Color.White), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
 
         val context = LocalContext.current
 
@@ -57,30 +63,37 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
             mutableStateOf("")
         }
 
-        Image(painter = painterResource(id = R.drawable.login), colorFilter = ColorFilter.tint(color = Color.Gray), contentDescription = "")
+        val focusManager = LocalFocusManager.current
+
+        Image(painter = painterResource(id = R.drawable.login_img), contentDescription = "")
         Spacer(modifier = Modifier.size(20.dp))
 
-        Text(text = "Login", style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold))
+        Text(text = StringConstants.helloTxt, style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold), modifier = Modifier.fillMaxWidth())
+
+
+        Text(text = StringConstants.welcomeTxt, style = TextStyle(fontSize = 14.sp), modifier = Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.size(20.dp))
-        TextField(modifier = Modifier.fillMaxWidth(),value = nameFieldValue, onValueChange = {
+        OutlinedTextField(modifier = Modifier.fillMaxWidth(),value = nameFieldValue, onValueChange = {
             nameFieldValue = it
         }, placeholder = {
-            Text("Enter Email")
+            Text(StringConstants.enterEmail)
         },keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email
+            keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
+        ), keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
         )
         )
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        TextField(modifier = Modifier.fillMaxWidth(),value = passWordFieldValue, onValueChange = {
+        OutlinedTextField(modifier = Modifier.fillMaxWidth(),value = passWordFieldValue, onValueChange = {
             passWordFieldValue = it
         },keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password
+            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
         ),
             placeholder = {
-                Text("Enter Password")
+                Text(StringConstants.enterPassword)
             }, visualTransformation = PasswordVisualTransformation()
         )
 
@@ -113,12 +126,12 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                 Toast.makeText(context, StringConstants.invalidEmailError,Toast.LENGTH_SHORT).show()
             }
         }, modifier = Modifier.width(220.dp)) {
-            Text(text = "Submit", style = TextStyle(fontSize = TextUnit(20f, TextUnitType.Sp)),color = Color.White)
+            Text(text = StringConstants.loginScreen, style = TextStyle(fontSize = TextUnit(20f, TextUnitType.Sp)),color = Color.White)
         }
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Text(text = "Create Account", textDecoration = TextDecoration.Underline, color = Color.Gray, modifier = Modifier.clickable {
+        Text(text = StringConstants.createAccountTxt, textDecoration = TextDecoration.Underline, color = Color.Gray, modifier = Modifier.clickable {
             navController.navigate(StringConstants.registrationRoute)
         })
     }

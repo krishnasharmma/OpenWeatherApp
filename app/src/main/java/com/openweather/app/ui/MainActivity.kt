@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     Manifest.permission.ACCESS_COARSE_LOCATION)
             )
             OpenWeatherAppTheme{
-                Scaffold (containerColor = Color.LightGray){
+                Scaffold (containerColor = Color.White){
                     it.calculateBottomPadding()
                     it.calculateTopPadding()
 

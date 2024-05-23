@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -20,12 +22,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
@@ -56,45 +61,54 @@ fun RegistrationScreen(navController: NavHostController, registrationViewModel: 
         var confirmPassWordFieldValue by remember {
             mutableStateOf("")
         }
-        Image(painter = painterResource(id = R.drawable.registration),
-            colorFilter = ColorFilter.tint(color = Color.Gray),
+
+        val focusManager = LocalFocusManager.current
+
+        Image(painter = painterResource(id = R.drawable.registration_img),
             contentDescription = "")
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Text(text = "Registration", style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold))
+        Text(text = StringConstants.registrationScreen, style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold), modifier = Modifier.fillMaxWidth())
+
+
+        Text(text = StringConstants.createAccTxt, style = TextStyle(fontSize = 14.sp), modifier = Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        TextField(modifier = Modifier.fillMaxWidth(),value = nameFieldValue, onValueChange = {
+        OutlinedTextField(modifier = Modifier.fillMaxWidth(),value = nameFieldValue, onValueChange = {
             nameFieldValue = it
         }, placeholder = {
-            Text("Enter Email")
+            Text(StringConstants.enterEmail)
         },keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email
+            keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
+        ), keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
         )
         )
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        TextField(modifier = Modifier.fillMaxWidth(),value = passWordFieldValue, onValueChange = {
+        OutlinedTextField(modifier = Modifier.fillMaxWidth(),value = passWordFieldValue, onValueChange = {
             passWordFieldValue = it
         },keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password
+            keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
+        ), keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
         ),
             placeholder = {
-                Text("Enter Password")
+                Text(StringConstants.enterPassword)
             }, visualTransformation = PasswordVisualTransformation()
         )
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        TextField(modifier = Modifier.fillMaxWidth(),value = confirmPassWordFieldValue, onValueChange = {
+        OutlinedTextField(modifier = Modifier.fillMaxWidth(),value = confirmPassWordFieldValue, onValueChange = {
             confirmPassWordFieldValue = it
         },keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password
+            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
         ),
-            placeholder = { Text("Confirm Password") },
+            placeholder = { Text(StringConstants.confirmPassword) },
             visualTransformation = PasswordVisualTransformation()
         )
 
@@ -142,7 +156,7 @@ fun RegistrationScreen(navController: NavHostController, registrationViewModel: 
                 Toast.makeText(context, StringConstants.invalidEmailError,Toast.LENGTH_SHORT).show()
             }
         }, modifier = Modifier.width(220.dp)) {
-            Text(text = "Submit", style = TextStyle(fontSize = TextUnit(20f, TextUnitType.Sp)),color = Color.White)
+            Text(text = StringConstants.submitText, style = TextStyle(fontSize = TextUnit(20f, TextUnitType.Sp)),color = Color.White)
         }
     }
 }

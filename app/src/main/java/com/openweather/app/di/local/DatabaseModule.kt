@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.Keep
 import androidx.room.Room
 import com.openweather.app.data.db.Database
+import com.openweather.app.data.db.dao.HistoryDao
 import com.openweather.app.data.db.dao.UsersDao
 import com.openweather.app.utils.Keys
 import dagger.Module
@@ -21,20 +22,25 @@ val factory: SupportOpenHelperFactory = SupportOpenHelperFactory(Keys.sqlKey().t
 @Module
 class DatabaseModule {
 
-    @Provides
-    fun provideAppDatabase(@ApplicationContext appContext: Context) = Room.databaseBuilder(
-        appContext,
-        Database::class.java,
-        "AppData"
-    ).openHelperFactory(factory).build()
+        @Provides
+        fun provideAppDatabase(@ApplicationContext appContext: Context) = Room.databaseBuilder(
+            appContext,
+            Database::class.java,
+            "UsersDatabase"
+        ).openHelperFactory(factory).build()
 
-    @Provides
-    fun provideUsersDao(appDatabase: Database): UsersDao {
-        return appDatabase.usersDao()
-    }
+        @Provides
+        fun provideUsersDao(appDatabase: Database): UsersDao {
+            return appDatabase.usersDao()
+        }
 
-    @Provides
-    @Singleton
-    fun provideApiHelper(dbHelperImpl: DBHelperImpl): DBHelper = dbHelperImpl
+        @Provides
+        fun provideHistoryDao(appDatabase: Database): HistoryDao {
+            return appDatabase.historyDao()
+        }
+
+        @Provides
+        @Singleton
+        fun provideApiHelper(dbHelperImpl: DBHelperImpl): DBHelper = dbHelperImpl
 
 }

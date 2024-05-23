@@ -31,4 +31,21 @@ object StringConstants {
     val invalidEmailError = "Please enter valid email or enter all fields"
     val passwordConfirmError = "Password does not match"
     val alreadyRegisteredUserMsg = "User is already registered, logging in"
+
+    //Screen Titles
+    val loginScreen = "Login"
+    val registrationScreen = "Registration"
+
+    //PlaceHolders
+    val enterEmail = "Enter Email"
+    val enterPassword = "Enter Password"
+    val confirmPassword = "Confirm Password"
+
+    //Button text
+    val submitText = "Submit"
+    val createAccountTxt = "Create Account"
+
+    val helloTxt = "Hello"
+    val welcomeTxt = "Welcome to Open Weather App"
+    val createAccTxt = "let's create your account"
 }

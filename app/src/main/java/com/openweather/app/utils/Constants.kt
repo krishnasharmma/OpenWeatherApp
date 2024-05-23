@@ -6,7 +6,7 @@ import androidx.annotation.Keep
 object Constants {
 
     init {
-        System.loadLibrary("native-lib")
+        System.loadLibrary("app")
     }
 
     external fun getBaseUrl(): String
