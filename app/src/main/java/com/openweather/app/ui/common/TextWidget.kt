@@ -44,7 +44,7 @@ fun HistoryItem(label: String, value: String?) {
         // Label Text
         Text(
             text = label,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.body2,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier.width(60.dp) // Adjust width as needed
@@ -52,9 +52,9 @@ fun HistoryItem(label: String, value: String?) {
         // Value Text
         Text(
             text = value?:"",
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.body2,
             color = Color.Black,
-            fontSize = TextUnit(20f, TextUnitType.Sp)
+            fontSize = TextUnit(16f, TextUnitType.Sp)
         )
     }
 }

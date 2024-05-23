@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -53,11 +55,11 @@ fun CurrentLocationItem(currentLocation: CurrentLocationResponse) {
 
     Card(modifier = Modifier
         .fillMaxWidth()
-        .padding(8.dp), backgroundColor = Color(0xFFA2A2A2)
+        .padding(8.dp), backgroundColor = Color(0xFFFFFFFF), elevation = 8.dp, shape = RoundedCornerShape(8.dp)
     ) {
         Row (
             Modifier
-                .padding(8.dp)
+                .padding(16.dp)
                 .fillMaxWidth(), horizontalArrangement = Arrangement.Absolute.SpaceBetween, verticalAlignment = Alignment.CenterVertically){
             Column {
                 HistoryItem(StringConstants.cityConst, currentLocation.name)
