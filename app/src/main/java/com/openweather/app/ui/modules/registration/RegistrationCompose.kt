@@ -2,11 +2,13 @@ package com.openweather.app.ui.modules.registration
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
@@ -32,6 +34,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
@@ -48,7 +51,7 @@ import com.openweather.app.utils.extension.set
 
 @Composable
 fun RegistrationScreen(navController: NavHostController, registrationViewModel: RegistrationViewModel) {
-    Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+    Column (modifier = Modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
         val context = LocalContext.current
         var nameFieldValue by remember {
             mutableStateOf("")
@@ -158,5 +161,11 @@ fun RegistrationScreen(navController: NavHostController, registrationViewModel: 
         }, modifier = Modifier.width(220.dp)) {
             Text(text = StringConstants.submitText, style = TextStyle(fontSize = TextUnit(20f, TextUnitType.Sp)),color = Color.White)
         }
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+        Text(text = StringConstants.goToLogin, textDecoration = TextDecoration.Underline, color = Color.Gray, modifier = Modifier.clickable {
+            navController.popBackStack()
+        })
     }
 }

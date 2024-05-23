@@ -6,6 +6,7 @@ import com.openweather.app.utils.StringConstants
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 fun String.isEmailValid(): Boolean {
     val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
@@ -23,4 +24,9 @@ fun Long.convertTimeMillisToFormattedString(pattern: String = StringConstants.ti
 fun Double.convertTemperatureToCelsius(): String{
     return "" + String.format("%.2f", (this - 273.15))
         .toDouble() + "°C"
+}
+
+fun String.getCountryNameFromCode():String{
+    val locale = Locale("", this)
+    return locale.displayCountry
 }

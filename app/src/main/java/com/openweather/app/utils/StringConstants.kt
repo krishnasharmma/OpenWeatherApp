@@ -10,7 +10,7 @@ object StringConstants {
     val sunsetConst = "Sunset:"
     val tempConst = "Temp:"
 
-    val timePattern = "HH:mm:ss"
+    val timePattern = "hh:mm a"
     val savedTimePattern = "dd MMM, HH:mm"
     val sessionConst = "loggedin"
     val savedUserConst = "userEmail"
@@ -44,6 +44,7 @@ object StringConstants {
     //Button text
     val submitText = "Submit"
     val createAccountTxt = "Create Account"
+    val goToLogin = "Go to Login"
 
     val helloTxt = "Hello"
     val welcomeTxt = "Welcome to Open Weather App"

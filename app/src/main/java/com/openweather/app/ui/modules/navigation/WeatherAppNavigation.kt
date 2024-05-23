@@ -28,7 +28,7 @@ fun WeatherAppNavigation(
     navController: NavHostController,
     locationPermissionState: MultiplePermissionsState, ) {
     val context = LocalContext.current
-    NavHost(navController, startDestination = if (context.myAppPreferences.get(StringConstants.sessionConst, false)) StringConstants.homeRoute else StringConstants.loginRoute, modifier = Modifier.padding(16.dp),) {
+    NavHost(navController, startDestination = if (context.myAppPreferences.get(StringConstants.sessionConst, false)) StringConstants.homeRoute else StringConstants.loginRoute) {
         composable(route = StringConstants.loginRoute) {
             LoginScreen(navController, hiltViewModel<LoginViewModel>())
         }

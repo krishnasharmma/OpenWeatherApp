@@ -3,7 +3,7 @@
 
 extern "C" jstring
 Java_com_openweather_app_utils_Keys_apiKey(JNIEnv *env, jobject thiz) {
-    std::string api_key = "BASE64_API_KEY_HERE";
+    std::string api_key = "MTE4MDQ2ZWQyM2QzOTE3ZmI4NjYyOGMwZTQ3YzdhODU=";
     return env->NewStringUTF(api_key.c_str());
 }
 
