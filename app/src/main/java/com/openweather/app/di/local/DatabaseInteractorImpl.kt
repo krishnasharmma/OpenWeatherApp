@@ -6,8 +6,8 @@ import com.openweather.app.data.db.entity.Users
 import com.openweather.app.data.db.entity.WeatherHistory
 import javax.inject.Inject
 
-class DBHelperImpl @Inject constructor(private val usersDao: UsersDao, private val historyDao: HistoryDao):
-    DBHelper {
+class DatabaseInteractorImpl @Inject constructor(private val usersDao: UsersDao, private val historyDao: HistoryDao):
+    DatabaseInteractor {
 
     override suspend fun insertUserData(users: Users) {
         usersDao.insertUser(users)

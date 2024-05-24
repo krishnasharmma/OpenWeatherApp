@@ -41,6 +41,6 @@ class DatabaseModule {
 
         @Provides
         @Singleton
-        fun provideApiHelper(dbHelperImpl: DBHelperImpl): DBHelper = dbHelperImpl
+        fun provideApiHelper(databaseInteractorImpl: DatabaseInteractorImpl): DatabaseInteractor = databaseInteractorImpl
 
 }

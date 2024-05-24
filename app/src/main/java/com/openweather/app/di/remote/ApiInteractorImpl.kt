@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @Keep
-class ApiHelperImpl @Inject constructor(val apiService: ApiService): ApiHelper {
+class ApiInteractorImpl @Inject constructor(val apiService: ApiService): ApiInteractor {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getCurrentWeather(currentWeatherRequest: CurrentWeatherRequest): Flow<Resource<CurrentLocationResponse>> = flow {

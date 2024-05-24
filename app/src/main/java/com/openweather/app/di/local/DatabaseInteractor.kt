@@ -4,7 +4,7 @@ import com.openweather.app.data.db.entity.Users
 import com.openweather.app.data.db.entity.WeatherHistory
 import kotlinx.coroutines.flow.Flow
 
-interface DBHelper {
+interface DatabaseInteractor {
 
     suspend fun insertUserData(users: Users)
 

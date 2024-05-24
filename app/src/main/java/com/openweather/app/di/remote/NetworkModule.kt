@@ -48,7 +48,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelperImpl: ApiHelperImpl): ApiHelper = apiHelperImpl
+    fun provideApiHelper(apiInteractorImpl: ApiInteractorImpl): ApiInteractor = apiInteractorImpl
 
     @Provides
     fun provideLocationLiveData(@ApplicationContext appContext: Context): LiveData<LocationModel> = LocationLiveData(appContext)

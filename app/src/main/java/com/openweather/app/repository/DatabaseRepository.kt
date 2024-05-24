@@ -2,22 +2,22 @@ package com.openweather.app.repository
 
 import com.openweather.app.data.db.entity.Users
 import com.openweather.app.data.db.entity.WeatherHistory
-import com.openweather.app.di.local.DBHelper
+import com.openweather.app.di.local.DatabaseInteractor
 import javax.inject.Inject
 
 
-open class DatabaseRepository @Inject constructor(private val dbHelper: DBHelper) {
+open class DatabaseRepository @Inject constructor(private val databaseInteractor: DatabaseInteractor) {
     open suspend fun insertUserData(users: Users) {
-        dbHelper.insertUserData(users)
+        databaseInteractor.insertUserData(users)
     }
 
-    open suspend fun getUserList(email: String) = dbHelper.getUserList(email)
+    open suspend fun getUserList(email: String) = databaseInteractor.getUserList(email)
 
     open suspend fun insertHistoryData(weatherHistory: WeatherHistory) {
-        dbHelper.insertHistory(weatherHistory)
+        databaseInteractor.insertHistory(weatherHistory)
     }
 
-    open suspend fun getHistoryList() = dbHelper.getHistoryList()
+    open suspend fun getHistoryList() = databaseInteractor.getHistoryList()
 
-    open suspend fun deleteAllData() = dbHelper.deleteAllData()
+    open suspend fun deleteAllData() = databaseInteractor.deleteAllData()
 }
