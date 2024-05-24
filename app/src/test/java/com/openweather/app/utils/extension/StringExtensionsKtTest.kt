@@ -39,4 +39,52 @@ class StringExtensionsKtTest {
 
         result.shouldEqual("2.85°C")
     }
+
+    @Test
+    fun `test getCountryNameFromCode with valid country code`() {
+        // Arrange
+        val countryCode = "US"
+
+        // Act
+        val countryName = countryCode.getCountryNameFromCode()
+
+        // Assert
+        countryName.shouldEqual("United States")
+    }
+
+    @Test
+    fun `test getCountryNameFromCode with another valid country code`() {
+        // Arrange
+        val countryCode = "IN"
+
+        // Act
+        val countryName = countryCode.getCountryNameFromCode()
+
+        // Assert
+        countryName.shouldEqual("India")
+    }
+
+    @Test
+    fun `test getCountryNameFromCode with empty country code`() {
+        // Arrange
+        val countryCode = ""
+
+        // Act
+        val countryName = countryCode.getCountryNameFromCode()
+
+        // Assert
+        countryName.shouldEqual("")  // Locale returns an empty string for empty country codes
+    }
+
+    @Test
+    fun `test getCountryNameFromCode with lowercase country code`() {
+        // Arrange
+        val countryCode = "us"
+
+        // Act
+        val countryName = countryCode.getCountryNameFromCode()
+
+        // Assert
+        countryName.shouldEqual("United States")  // Locale should handle lowercase codes correctly
+    }
 }
