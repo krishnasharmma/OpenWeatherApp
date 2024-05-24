@@ -129,7 +129,9 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                             }
                         } else {
                             Toast.makeText(context, if (it == StringConstants.PASS_MISMATCH) StringConstants.passwordError else StringConstants.emailNotFoundError, Toast.LENGTH_SHORT).show()
-                            navController.navigate(StringConstants.registrationRoute)
+                            if (it != StringConstants.PASS_MISMATCH) {
+                                navController.navigate(StringConstants.registrationRoute)
+                            }
                         }
                     }
 
