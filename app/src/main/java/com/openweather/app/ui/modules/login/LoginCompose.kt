@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,10 +50,15 @@ import com.openweather.app.utils.extension.get
 import com.openweather.app.utils.extension.isEmailValid
 import com.openweather.app.utils.extension.myAppPreferences
 import com.openweather.app.utils.extension.set
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel) {
-    Column (modifier = Modifier.fillMaxSize().background(color = Color.White).padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+    Column (modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.White)
+        .padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
 
         val context = LocalContext.current
 
@@ -65,6 +71,8 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
         }
 
         val focusManager = LocalFocusManager.current
+
+        val scope = rememberCoroutineScope()
 
         Image(painter = painterResource(id = R.drawable.login_img), contentDescription = "")
         Spacer(modifier = Modifier.size(20.dp))
@@ -107,21 +115,24 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     userPass = passWordFieldValue
                 )
                 loginViewModel.checkIfUserExist(users){
-                    if (it == StringConstants.LOGIN_SUCCESS){
-                        if(context.myAppPreferences.get(StringConstants.savedUserConst,"") != users.userName) {
-                            loginViewModel.deleteData()
-                        }
-                        context.myAppPreferences[StringConstants.sessionConst] = true
-                        context.myAppPreferences[StringConstants.savedUserConst] = users.userName
-                        navController.navigate(StringConstants.homeRoute) {
-                            popUpTo(StringConstants.loginRoute) {
-                                inclusive = true
+                    scope.launch(Dispatchers.Main) {
+                        if (it == StringConstants.LOGIN_SUCCESS){
+                            if(context.myAppPreferences.get(StringConstants.savedUserConst,"") != users.userName) {
+                                loginViewModel.deleteData()
                             }
+                            context.myAppPreferences[StringConstants.sessionConst] = true
+                            context.myAppPreferences[StringConstants.savedUserConst] = users.userName
+                            navController.navigate(StringConstants.homeRoute) {
+                                popUpTo(StringConstants.loginRoute) {
+                                    inclusive = true
+                                }
+                            }
+                        } else {
+                            Toast.makeText(context, if (it == StringConstants.PASS_MISMATCH) StringConstants.passwordError else StringConstants.emailNotFoundError, Toast.LENGTH_SHORT).show()
+                            navController.navigate(StringConstants.registrationRoute)
                         }
-                    } else {
-                        Toast.makeText(context, if (it == StringConstants.PASS_MISMATCH) StringConstants.passwordError else StringConstants.emailNotFoundError, Toast.LENGTH_SHORT).show()
-                        navController.navigate(StringConstants.registrationRoute)
                     }
+
                 }
             } else {
                 Toast.makeText(context, StringConstants.invalidEmailError,Toast.LENGTH_SHORT).show()

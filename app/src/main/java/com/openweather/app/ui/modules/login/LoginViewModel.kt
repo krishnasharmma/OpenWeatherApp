@@ -20,9 +20,7 @@ class LoginViewModel @Inject constructor(val databaseRepository: DatabaseReposit
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val result = determineLoginResult(users)
-                withContext(Dispatchers.Main) {
                     callback(result)
-                }
             }
         }
     }
