@@ -119,6 +119,7 @@ This project is developed and tested on Android Studio version (Android Studio J
 
 #### Device Support
 The application is designed and optimized for Android phones. Ensure that your target devices meet the Android version requirements specified in the project.
+Minimum SDK Support - 24 (Nougat)
 
 
 ## Getting Started
@@ -136,7 +137,7 @@ To integrate your API key you need to put OpenWeatherMap api key in base64 form 
 ```cpp
 // cpp/native-lib.cpp
 
-std::string api_key = "BASE64_API_KEY_HERE"; // Replace with your actual API key in base64
+std::string api_key = "ENTER Your Base64 Encode Api Key"; // Replace with your actual API key in base64
 std::string api_key = "DB-Encryption-Key"; // Replace with your key to encrypt the database
 // ...
 ```
