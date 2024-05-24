@@ -70,6 +70,24 @@ class HomeViewModelTest {
     }
 
     @Test
+    fun `getCurrentWeatherData loading should be true and not insert history data`() =
+        runBlockingTest {
+            // Arrange
+            every {
+                homeViewModel.loading.value = true
+                networkRepository.getCurrentWeather(mockCurrentWeatherRequest) } returns flowOf(
+                Resource.Loading()
+            )
+
+            // Act
+            homeViewModel.getCurrentWeatherData(mockCurrentWeatherRequest)
+
+            // Assert
+            testScheduler.apply { advanceTimeBy(1000); runCurrent() } // Advance time to allow coroutine to execute
+            homeViewModel.loading.value.shouldBe( true)
+            coEvery { dbRepository.insertHistoryData(any()) }
+        }
+    @Test
     fun `getCurrentWeatherData success should update loading, weatherResponseState, and insert history data`() =
         runBlockingTest {
             // Arrange

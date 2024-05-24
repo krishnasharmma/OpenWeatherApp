@@ -2,6 +2,7 @@ package com.openweather.app.di.local
 
 import com.openweather.app.data.db.entity.Users
 import com.openweather.app.data.db.entity.WeatherHistory
+import com.openweather.app.data.db.interactor.DatabaseInteractor
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

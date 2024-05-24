@@ -1,5 +1,6 @@
 package com.openweather.app.di.remote
 
+import com.openweather.app.data.remote.ApiInteractor
 import com.openweather.app.data.request.CurrentWeatherRequest
 import com.openweather.app.data.response.CurrentLocationResponse
 import com.openweather.app.utils.Resource

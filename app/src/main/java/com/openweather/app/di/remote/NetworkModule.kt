@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.annotation.Keep
 import androidx.lifecycle.LiveData
 import com.openweather.app.data.location.LocationModel
+import com.openweather.app.data.remote.ApiInteractor
+import com.openweather.app.data.remote.ApiInteractorImpl
+import com.openweather.app.data.remote.ApiService
 import com.openweather.app.utils.Constants
 import com.openweather.app.utils.LocationLiveData
 import com.openweather.app.utils.NetworkCheckInterceptor
@@ -48,7 +51,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiInteractorImpl: ApiInteractorImpl): ApiInteractor = apiInteractorImpl
+    fun provideApiInteractor(apiInteractorImpl: ApiInteractorImpl): ApiInteractor = apiInteractorImpl
 
     @Provides
     fun provideLocationLiveData(@ApplicationContext appContext: Context): LiveData<LocationModel> = LocationLiveData(appContext)

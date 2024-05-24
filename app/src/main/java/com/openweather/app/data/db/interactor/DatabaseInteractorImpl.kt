@@ -1,4 +1,4 @@
-package com.openweather.app.di.local
+package com.openweather.app.data.db.interactor
 
 import com.openweather.app.data.db.dao.HistoryDao
 import com.openweather.app.data.db.dao.UsersDao

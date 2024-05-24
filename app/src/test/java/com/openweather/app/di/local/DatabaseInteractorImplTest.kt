@@ -2,6 +2,7 @@ package com.openweather.app.di.local
 
 import com.openweather.app.data.dao.FakeHistoryDao
 import com.openweather.app.data.dao.FakeUsersDao
+import com.openweather.app.data.db.interactor.DatabaseInteractorImpl
 import com.openweather.app.generateUsers
 import com.openweather.app.generateWeatherHistory
 import com.openweather.app.randomString

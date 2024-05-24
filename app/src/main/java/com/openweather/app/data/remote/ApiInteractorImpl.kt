@@ -1,4 +1,4 @@
-package com.openweather.app.di.remote
+package com.openweather.app.data.remote
 
 
 import android.os.Build

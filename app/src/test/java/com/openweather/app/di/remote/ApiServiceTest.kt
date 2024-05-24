@@ -1,6 +1,7 @@
 package com.openweather.app.di.remote
 
 import com.google.common.truth.Truth.assertThat
+import com.openweather.app.data.remote.ApiService
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

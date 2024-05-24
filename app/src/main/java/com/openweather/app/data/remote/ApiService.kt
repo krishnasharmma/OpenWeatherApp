@@ -1,4 +1,4 @@
-package com.openweather.app.di.remote
+package com.openweather.app.data.remote
 
 import androidx.annotation.Keep
 import com.openweather.app.data.response.CurrentLocationResponse

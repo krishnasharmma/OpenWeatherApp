@@ -1,7 +1,7 @@
 package com.openweather.app.repository
 
 import com.openweather.app.data.request.CurrentWeatherRequest
-import com.openweather.app.di.remote.ApiInteractor
+import com.openweather.app.data.remote.ApiInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject

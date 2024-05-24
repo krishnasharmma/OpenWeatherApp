@@ -6,6 +6,8 @@ import androidx.room.Room
 import com.openweather.app.data.db.Database
 import com.openweather.app.data.db.dao.HistoryDao
 import com.openweather.app.data.db.dao.UsersDao
+import com.openweather.app.data.db.interactor.DatabaseInteractor
+import com.openweather.app.data.db.interactor.DatabaseInteractorImpl
 import com.openweather.app.utils.Keys
 import dagger.Module
 import dagger.Provides
@@ -41,6 +43,6 @@ class DatabaseModule {
 
         @Provides
         @Singleton
-        fun provideApiHelper(databaseInteractorImpl: DatabaseInteractorImpl): DatabaseInteractor = databaseInteractorImpl
+        fun provideDatabaseInteractor(databaseInteractorImpl: DatabaseInteractorImpl): DatabaseInteractor = databaseInteractorImpl
 
 }

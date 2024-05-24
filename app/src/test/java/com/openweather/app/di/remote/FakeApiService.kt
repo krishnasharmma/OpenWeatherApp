@@ -1,5 +1,6 @@
 package com.openweather.app.di.remote
 
+import com.openweather.app.data.remote.ApiService
 import com.openweather.app.data.response.CurrentLocationResponse
 import kotlinx.coroutines.flow.Flow
 

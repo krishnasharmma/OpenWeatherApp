@@ -1,4 +1,4 @@
-package com.openweather.app.di.remote
+package com.openweather.app.data.remote
 
 import com.openweather.app.data.request.CurrentWeatherRequest
 import com.openweather.app.data.response.CurrentLocationResponse

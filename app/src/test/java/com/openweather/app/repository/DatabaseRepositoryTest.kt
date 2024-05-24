@@ -1,7 +1,7 @@
 package com.openweather.app.repository
 
 import com.google.common.truth.Truth
-import com.openweather.app.di.local.DatabaseInteractor
+import com.openweather.app.data.db.interactor.DatabaseInteractor
 import com.openweather.app.di.local.FakeDatabaseInteractor
 import com.openweather.app.generateUsers
 import com.openweather.app.generateWeatherHistory
