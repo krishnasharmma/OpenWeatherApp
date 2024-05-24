@@ -158,7 +158,7 @@ Displays the current weather information based on the device's location obtained
 
 ### Home - Tab 2 (History Listing):
 Shows a listing of weather history saved in the local Room database.
-- <img src="screens/weather_history_list.png.png" alt="Screenshot 4" width="200"/>
+- <img src="screens/weather_history_list.png" alt="Screenshot 4" width="200"/>
 
 
 ## Contributing
